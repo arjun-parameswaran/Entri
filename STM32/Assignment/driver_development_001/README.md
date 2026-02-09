@@ -17,8 +17,6 @@ microcontroller using a custom GPIO driver.
 
 ## Pin Configuration
 
- 
- ** Pin and Purpose**
 - PA5  - Onboard LED (toggle on button press) 
 - PA6  - External LED 1 
 - PA7  - External LED 2 
