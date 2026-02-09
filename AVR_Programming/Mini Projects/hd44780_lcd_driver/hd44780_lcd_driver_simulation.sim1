@@ -1,0 +1,27 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Hd44780" CircId="Hd44780-3" mainComp="false" Show_id="true" Show_Val="false" Pos="-660,-244" rotation="0" hflip="1" vflip="1" label="Hd44780-3" idLabPos="70,-82" labelrot="0" valLabPos="-16,20" valLabRot="0" Rows="2" Cols="16" />
+
+<item itemtype="MCU" CircId="mega328-7" mainComp="false" Show_id="false" Show_Val="false" Pos="-516,-228" rotation="0" hflip="1" vflip="1" label="mega328-7" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="D:/Entri/AVR_Programming/Mini Projects/hd44780_lcd_driver/hd44780_lcd_driver/Debug/hd44780_lcd_driver.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Ground" CircId="Ground-9" mainComp="false" Show_id="false" Show_Val="false" Pos="-632,-108" rotation="0" hflip="1" vflip="1" label="Ground-9" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Push" CircId="Push-11" mainComp="false" Show_id="false" Show_Val="false" Pos="-692,-196" rotation="0" hflip="1" vflip="1" label="Push-11" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Connector" uid="Connector-2" startpinid="Hd44780-3-dataPin7" endpinid="mega328-7-PORTD7" pointList="-564,-236,-564,-124,-524,-124" />
+
+<item itemtype="Connector" uid="Connector-3" startpinid="mega328-7-PORTD6" endpinid="Hd44780-3-dataPin6" pointList="-524,-132,-572,-132,-572,-236" />
+
+<item itemtype="Connector" uid="Connector-4" startpinid="Hd44780-3-dataPin5" endpinid="mega328-7-PORTD5" pointList="-580,-236,-580,-140,-524,-140" />
+
+<item itemtype="Connector" uid="Connector-5" startpinid="mega328-7-PORTD4" endpinid="Hd44780-3-dataPin4" pointList="-524,-180,-588,-180,-588,-236" />
+
+<item itemtype="Connector" uid="Connector-6" startpinid="Hd44780-3-PinEn" endpinid="mega328-7-PORTB6" pointList="-628,-236,-628,-156,-524,-156" />
+
+<item itemtype="Connector" uid="Connector-10" startpinid="Ground-9-Gnd" endpinid="Hd44780-3-PinRW" pointList="-632,-124,-632,-236,-636,-236" />
+
+<item itemtype="Connector" uid="Connector-15" startpinid="mega328-7-PORTB7" endpinid="Hd44780-3-PinRS" pointList="-524,-148,-644,-148,-644,-236" />
+
+<item itemtype="Connector" uid="Connector-17" startpinid="Push-11-switch0pinN" endpinid="mega328-7-PORTD2" pointList="-676,-196,-524,-196" />
+
+</circuit>

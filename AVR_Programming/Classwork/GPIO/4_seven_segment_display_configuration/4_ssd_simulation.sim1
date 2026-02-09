@@ -1,0 +1,31 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Seven Segment" CircId="Seven Segment-2" mainComp="false" Show_id="false" Show_Val="false" Pos="-212,-208" rotation="0" hflip="1" vflip="1" label="Seven Segment-2" idLabPos="20,-44" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Green" NumDisplays="4" Vertical_Pins="false" CommonCathode="true" Threshold="2.4 V" MaxCurrent="20 mA" Resistance="1 Ω" />
+
+<item itemtype="MCU" CircId="mega328-3" mainComp="false" Show_id="true" Show_Val="false" Pos="-348,-236" rotation="0" hflip="1" vflip="1" label="mega328-3" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="D:/Entri/AVR Programming/Classwork/GPIO/4_seven_segment_display_configuration/4_seven_segment_display_configuration/Debug/4_seven_segment_display_configuration.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Connector" uid="Connector-2" startpinid="mega328-3-PORTB0" endpinid="Seven Segment-2-pin_a" pointList="-356,-124,-356,-96,-292,-96,-292,-232,-236,-232" />
+
+<item itemtype="Connector" uid="Connector-3" startpinid="Seven Segment-2-pin_b" endpinid="mega328-3-PORTB1" pointList="-236,-224,-244,-224,-244,-124,-308,-124" />
+
+<item itemtype="Connector" uid="Connector-4" startpinid="mega328-3-PORTB2" endpinid="Seven Segment-2-pin_c" pointList="-308,-132,-252,-132,-252,-216,-236,-216" />
+
+<item itemtype="Connector" uid="Connector-5" startpinid="Seven Segment-2-pin_d" endpinid="mega328-3-PORTB3" pointList="-236,-208,-260,-208,-260,-140,-308,-140" />
+
+<item itemtype="Connector" uid="Connector-6" startpinid="mega328-3-PORTB4" endpinid="Seven Segment-2-pin_e" pointList="-308,-148,-272,-148,-272,-200,-236,-200" />
+
+<item itemtype="Connector" uid="Connector-7" startpinid="Seven Segment-2-pin_f" endpinid="mega328-3-PORTB5" pointList="-236,-192,-284,-192,-284,-156,-308,-156" />
+
+<item itemtype="Connector" uid="Connector-8" startpinid="mega328-3-PORTB6" endpinid="Seven Segment-2-pin_g" pointList="-356,-164,-364,-164,-364,-104,-276,-104,-276,-184,-236,-184" />
+
+<item itemtype="Connector" uid="Connector-19" startpinid="mega328-3-PORTB7" endpinid="Seven Segment-2-pin_dot" pointList="-356,-156,-376,-156,-376,-92,-220,-92,-220,-176" />
+
+<item itemtype="Connector" uid="Connector-23" startpinid="Seven Segment-2-pin_commona" endpinid="mega328-3-PORTD0" pointList="-204,-176,-204,-84,-380,-84,-380,-220,-356,-220" />
+
+<item itemtype="Connector" uid="Connector-24" startpinid="Seven Segment-2-pin_commonb" endpinid="mega328-3-PORTD1" pointList="-172,-176,-172,-72,-392,-72,-392,-212,-356,-212" />
+
+<item itemtype="Connector" uid="Connector-25" startpinid="Seven Segment-2-pin_commonc" endpinid="mega328-3-PORTD2" pointList="-140,-176,-140,-96,-412,-96,-412,-204,-356,-204" />
+
+<item itemtype="Connector" uid="Connector-26" startpinid="mega328-3-PORTD3" endpinid="Seven Segment-2-pin_commond" pointList="-356,-196,-424,-196,-424,-84,-108,-84,-108,-176" />
+
+</circuit>

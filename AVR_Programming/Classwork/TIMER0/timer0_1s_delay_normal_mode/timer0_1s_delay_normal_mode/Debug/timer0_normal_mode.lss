@@ -1,0 +1,161 @@
+
+timer0_normal_mode.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000124  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000000d0  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000124  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000154  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000028  00000000  00000000  00000194  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000006c3  00000000  00000000  000001bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000635  00000000  00000000  0000087f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000024d  00000000  00000000  00000eb4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000034  00000000  00000000  00001104  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000367  00000000  00000000  00001138  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000024  00000000  00000000  0000149f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000018  00000000  00000000  000014c3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   8:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  10:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  14:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  18:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  1c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  20:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  28:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  30:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  34:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  38:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  3c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  40:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  44:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  48:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  4c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  50:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  54:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  58:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  5c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  60:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  64:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	0e 94 59 00 	call	0xb2	; 0xb2 <main>
+  78:	0c 94 66 00 	jmp	0xcc	; 0xcc <_exit>
+
+0000007c <__bad_interrupt>:
+  7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000080 <delay_1s>:
+#define F_CPU 16000000UL
+#include <avr/io.h>
+
+void delay_1s(void)
+{
+	TCNT0 = 0; //loading the initial starting value.
+  80:	16 bc       	out	0x26, r1	; 38
+
+	/*configuring the normal mode*/
+	TCCR0A |= ((1 << WGM01) | (1 << WGM00));
+  82:	84 b5       	in	r24, 0x24	; 36
+  84:	83 60       	ori	r24, 0x03	; 3
+  86:	84 bd       	out	0x24, r24	; 36
+	
+	/*setting pre-scaling value to 1 (no pre-scaling)*/
+	TCCR0B &= ~((1 << CS02) | (1 << CS01));
+  88:	85 b5       	in	r24, 0x25	; 37
+  8a:	89 7f       	andi	r24, 0xF9	; 249
+  8c:	85 bd       	out	0x25, r24	; 37
+	TCCR0B |= (1 << CS00);
+  8e:	85 b5       	in	r24, 0x25	; 37
+  90:	81 60       	ori	r24, 0x01	; 1
+  92:	85 bd       	out	0x25, r24	; 37
+	/*creating a loop which runs 62500 times overflow ~ 1 second delay*/
+	for(uint16_t i = 0; i <= 62500; i++)
+  94:	20 e0       	ldi	r18, 0x00	; 0
+  96:	30 e0       	ldi	r19, 0x00	; 0
+  98:	07 c0       	rjmp	.+14     	; 0xa8 <delay_1s+0x28>
+	{
+		/*checking for TOV0 flag set or not*/
+		while(!(TIFR0 & (1 << TOV0))); //waiting until the flag is set.
+  9a:	a8 9b       	sbis	0x15, 0	; 21
+  9c:	fe cf       	rjmp	.-4      	; 0x9a <delay_1s+0x1a>
+		 TIFR0 |= (1 << TOV0); //writing 1 to reset the flag	
+  9e:	85 b3       	in	r24, 0x15	; 21
+  a0:	81 60       	ori	r24, 0x01	; 1
+  a2:	85 bb       	out	0x15, r24	; 21
+	
+	/*setting pre-scaling value to 1 (no pre-scaling)*/
+	TCCR0B &= ~((1 << CS02) | (1 << CS01));
+	TCCR0B |= (1 << CS00);
+	/*creating a loop which runs 62500 times overflow ~ 1 second delay*/
+	for(uint16_t i = 0; i <= 62500; i++)
+  a4:	2f 5f       	subi	r18, 0xFF	; 255
+  a6:	3f 4f       	sbci	r19, 0xFF	; 255
+  a8:	25 32       	cpi	r18, 0x25	; 37
+  aa:	84 ef       	ldi	r24, 0xF4	; 244
+  ac:	38 07       	cpc	r19, r24
+  ae:	a8 f3       	brcs	.-22     	; 0x9a <delay_1s+0x1a>
+		/*checking for TOV0 flag set or not*/
+		while(!(TIFR0 & (1 << TOV0))); //waiting until the flag is set.
+		 TIFR0 |= (1 << TOV0); //writing 1 to reset the flag	
+	}
+	
+}
+  b0:	08 95       	ret
+
+000000b2 <main>:
+
+int main(void)
+{
+	/*configuring PORTD PIN 5 for LED*/
+	DDRD |= (1 << DDD5);
+  b2:	8a b1       	in	r24, 0x0a	; 10
+  b4:	80 62       	ori	r24, 0x20	; 32
+  b6:	8a b9       	out	0x0a, r24	; 10
+	PORTD &= ~(1 << PD5); //turning the led off during the start
+  b8:	8b b1       	in	r24, 0x0b	; 11
+  ba:	8f 7d       	andi	r24, 0xDF	; 223
+  bc:	8b b9       	out	0x0b, r24	; 11
+    
+	while (1) 
+    {
+		PORTD ^= (1 << PD5);
+  be:	9b b1       	in	r25, 0x0b	; 11
+  c0:	80 e2       	ldi	r24, 0x20	; 32
+  c2:	89 27       	eor	r24, r25
+  c4:	8b b9       	out	0x0b, r24	; 11
+		delay_1s();
+  c6:	0e 94 40 00 	call	0x80	; 0x80 <delay_1s>
+  ca:	f9 cf       	rjmp	.-14     	; 0xbe <main+0xc>
+
+000000cc <_exit>:
+  cc:	f8 94       	cli
+
+000000ce <__stop_program>:
+  ce:	ff cf       	rjmp	.-2      	; 0xce <__stop_program>

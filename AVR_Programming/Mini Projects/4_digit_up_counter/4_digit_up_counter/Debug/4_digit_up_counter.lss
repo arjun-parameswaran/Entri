@@ -1,0 +1,659 @@
+
+4_digit_up_counter.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000000a  00800100  0000042a  000004be  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000042a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000000c  0080010a  0080010a  000004c8  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000004c8  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000004f8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000070  00000000  00000000  00000538  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000093f  00000000  00000000  000005a8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000006e3  00000000  00000000  00000ee7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000421  00000000  00000000  000015ca  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000d4  00000000  00000000  000019ec  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000004cb  00000000  00000000  00001ac0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000000b0  00000000  00000000  00001f8b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000060  00000000  00000000  0000203b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	ea e2       	ldi	r30, 0x2A	; 42
+  7c:	f4 e0       	ldi	r31, 0x04	; 4
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	aa 30       	cpi	r26, 0x0A	; 10
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	aa e0       	ldi	r26, 0x0A	; 10
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a6 31       	cpi	r26, 0x16	; 22
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 ef 01 	call	0x3de	; 0x3de <main>
+  9e:	0c 94 13 02 	jmp	0x426	; 0x426 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <gpio_init>:
+uint8_t digits[10] = {ZERO, ONE, TWO, THREE, FOUR,FIVE, SIX, SEVEN, EIGHT, NINE};
+
+void gpio_init()
+{
+	/*switch configuration*/
+	DDRB &= ~(0x0F);
+  a6:	84 b1       	in	r24, 0x04	; 4
+  a8:	80 7f       	andi	r24, 0xF0	; 240
+  aa:	84 b9       	out	0x04, r24	; 4
+	PORTB |= 0x0F;		//enabling internal pull up
+  ac:	85 b1       	in	r24, 0x05	; 5
+  ae:	8f 60       	ori	r24, 0x0F	; 15
+  b0:	85 b9       	out	0x05, r24	; 5
+	/*SSD data segment line configuration - a to g*/
+	DDRD |= 0x7F;
+  b2:	8a b1       	in	r24, 0x0a	; 10
+  b4:	8f 67       	ori	r24, 0x7F	; 127
+  b6:	8a b9       	out	0x0a, r24	; 10
+	/*SSD Enable line configuration & Indication LED configuration*/
+	DDRC |= 0x3F;
+  b8:	87 b1       	in	r24, 0x07	; 7
+  ba:	8f 63       	ori	r24, 0x3F	; 63
+  bc:	87 b9       	out	0x07, r24	; 7
+	/*Buzzer configuration*/
+	DDRB |= 0x40;
+  be:	84 b1       	in	r24, 0x04	; 4
+  c0:	80 64       	ori	r24, 0x40	; 64
+  c2:	84 b9       	out	0x04, r24	; 4
+	/*turning off  all digits*/
+	PORTC |= 0x3F;
+  c4:	88 b1       	in	r24, 0x08	; 8
+  c6:	8f 63       	ori	r24, 0x3F	; 63
+  c8:	88 b9       	out	0x08, r24	; 8
+  ca:	08 95       	ret
+
+000000cc <up_switch_detection>:
+}
+/*increment switch press detectionh*/
+void up_switch_detection()
+{
+	
+	uint8_t up_curr_state = (UP_SWITCH_PRESS)? HIGH: LOW;
+  cc:	93 b1       	in	r25, 0x03	; 3
+  ce:	81 e0       	ldi	r24, 0x01	; 1
+  d0:	29 2f       	mov	r18, r25
+  d2:	28 70       	andi	r18, 0x08	; 8
+  d4:	93 fd       	sbrc	r25, 3
+  d6:	80 e0       	ldi	r24, 0x00	; 0
+	if (up_prev_state == 0 && up_curr_state == 1)
+  d8:	90 91 0e 01 	lds	r25, 0x010E	; 0x80010e <up_prev_state>
+  dc:	91 11       	cpse	r25, r1
+  de:	20 c0       	rjmp	.+64     	; 0x120 <up_switch_detection+0x54>
+  e0:	21 11       	cpse	r18, r1
+  e2:	1e c0       	rjmp	.+60     	; 0x120 <up_switch_detection+0x54>
+	{
+		if (count < MAX_COUNT && enable_flag)
+  e4:	20 91 10 01 	lds	r18, 0x0110	; 0x800110 <count>
+  e8:	30 91 11 01 	lds	r19, 0x0111	; 0x800111 <count+0x1>
+  ec:	2f 30       	cpi	r18, 0x0F	; 15
+  ee:	97 e2       	ldi	r25, 0x27	; 39
+  f0:	39 07       	cpc	r19, r25
+  f2:	b0 f4       	brcc	.+44     	; 0x120 <up_switch_detection+0x54>
+  f4:	90 91 0f 01 	lds	r25, 0x010F	; 0x80010f <enable_flag>
+  f8:	99 23       	and	r25, r25
+  fa:	91 f0       	breq	.+36     	; 0x120 <up_switch_detection+0x54>
+		{
+			buzzer_timer = BUZZER_TIME;
+  fc:	40 e1       	ldi	r20, 0x10	; 16
+  fe:	57 e2       	ldi	r21, 0x27	; 39
+ 100:	60 e0       	ldi	r22, 0x00	; 0
+ 102:	70 e0       	ldi	r23, 0x00	; 0
+ 104:	40 93 12 01 	sts	0x0112, r20	; 0x800112 <buzzer_timer>
+ 108:	50 93 13 01 	sts	0x0113, r21	; 0x800113 <buzzer_timer+0x1>
+ 10c:	60 93 14 01 	sts	0x0114, r22	; 0x800114 <buzzer_timer+0x2>
+ 110:	70 93 15 01 	sts	0x0115, r23	; 0x800115 <buzzer_timer+0x3>
+			count++;	//count increment
+ 114:	2f 5f       	subi	r18, 0xFF	; 255
+ 116:	3f 4f       	sbci	r19, 0xFF	; 255
+ 118:	30 93 11 01 	sts	0x0111, r19	; 0x800111 <count+0x1>
+ 11c:	20 93 10 01 	sts	0x0110, r18	; 0x800110 <count>
+		}
+	}
+	up_prev_state = up_curr_state;		
+ 120:	80 93 0e 01 	sts	0x010E, r24	; 0x80010e <up_prev_state>
+ 124:	08 95       	ret
+
+00000126 <down_switch_detection>:
+}
+/*decrement switch press detection*/
+void down_switch_detection()
+{
+	uint8_t down_curr_state = (DOWN_SWITCH_PRESS)? HIGH: LOW;
+ 126:	93 b1       	in	r25, 0x03	; 3
+ 128:	81 e0       	ldi	r24, 0x01	; 1
+ 12a:	29 2f       	mov	r18, r25
+ 12c:	24 70       	andi	r18, 0x04	; 4
+ 12e:	92 fd       	sbrc	r25, 2
+ 130:	80 e0       	ldi	r24, 0x00	; 0
+
+	if (down_prev_state == LOW && down_curr_state == HIGH)
+ 132:	90 91 0d 01 	lds	r25, 0x010D	; 0x80010d <down_prev_state>
+ 136:	91 11       	cpse	r25, r1
+ 138:	1f c0       	rjmp	.+62     	; 0x178 <down_switch_detection+0x52>
+ 13a:	21 11       	cpse	r18, r1
+ 13c:	1d c0       	rjmp	.+58     	; 0x178 <down_switch_detection+0x52>
+	{
+		if (count > MIN_COUNT && enable_flag)
+ 13e:	20 91 10 01 	lds	r18, 0x0110	; 0x800110 <count>
+ 142:	30 91 11 01 	lds	r19, 0x0111	; 0x800111 <count+0x1>
+ 146:	21 15       	cp	r18, r1
+ 148:	31 05       	cpc	r19, r1
+ 14a:	b1 f0       	breq	.+44     	; 0x178 <down_switch_detection+0x52>
+ 14c:	90 91 0f 01 	lds	r25, 0x010F	; 0x80010f <enable_flag>
+ 150:	99 23       	and	r25, r25
+ 152:	91 f0       	breq	.+36     	; 0x178 <down_switch_detection+0x52>
+		{
+			buzzer_timer = BUZZER_TIME;
+ 154:	40 e1       	ldi	r20, 0x10	; 16
+ 156:	57 e2       	ldi	r21, 0x27	; 39
+ 158:	60 e0       	ldi	r22, 0x00	; 0
+ 15a:	70 e0       	ldi	r23, 0x00	; 0
+ 15c:	40 93 12 01 	sts	0x0112, r20	; 0x800112 <buzzer_timer>
+ 160:	50 93 13 01 	sts	0x0113, r21	; 0x800113 <buzzer_timer+0x1>
+ 164:	60 93 14 01 	sts	0x0114, r22	; 0x800114 <buzzer_timer+0x2>
+ 168:	70 93 15 01 	sts	0x0115, r23	; 0x800115 <buzzer_timer+0x3>
+			count--;		//to increment the counter
+ 16c:	21 50       	subi	r18, 0x01	; 1
+ 16e:	31 09       	sbc	r19, r1
+ 170:	30 93 11 01 	sts	0x0111, r19	; 0x800111 <count+0x1>
+ 174:	20 93 10 01 	sts	0x0110, r18	; 0x800110 <count>
+		}
+	}
+	down_prev_state = down_curr_state;		//updating the previous state with current state
+ 178:	80 93 0d 01 	sts	0x010D, r24	; 0x80010d <down_prev_state>
+ 17c:	08 95       	ret
+
+0000017e <pause_switch_detection>:
+}
+/*pause switch press detection*/
+void pause_switch_detection()
+{
+	uint8_t pause_curr_state = (PAUSE_SWITCH_PRESS)? HIGH: LOW;
+ 17e:	93 b1       	in	r25, 0x03	; 3
+ 180:	81 e0       	ldi	r24, 0x01	; 1
+ 182:	29 2f       	mov	r18, r25
+ 184:	22 70       	andi	r18, 0x02	; 2
+ 186:	91 fd       	sbrc	r25, 1
+ 188:	80 e0       	ldi	r24, 0x00	; 0
+	
+	if (pause_prev_state == LOW && pause_curr_state == HIGH)
+ 18a:	90 91 0c 01 	lds	r25, 0x010C	; 0x80010c <pause_prev_state>
+ 18e:	91 11       	cpse	r25, r1
+ 190:	08 c0       	rjmp	.+16     	; 0x1a2 <pause_switch_detection+0x24>
+ 192:	21 11       	cpse	r18, r1
+ 194:	06 c0       	rjmp	.+12     	; 0x1a2 <pause_switch_detection+0x24>
+	{
+		enable_flag ^= 1;
+ 196:	20 91 0f 01 	lds	r18, 0x010F	; 0x80010f <enable_flag>
+ 19a:	91 e0       	ldi	r25, 0x01	; 1
+ 19c:	92 27       	eor	r25, r18
+ 19e:	90 93 0f 01 	sts	0x010F, r25	; 0x80010f <enable_flag>
+	}
+	pause_prev_state = pause_curr_state;		//updating the previous state with current state
+ 1a2:	80 93 0c 01 	sts	0x010C, r24	; 0x80010c <pause_prev_state>
+ 1a6:	08 95       	ret
+
+000001a8 <reset_switch_detection>:
+}
+
+/*Reset switch press detection*/
+reset_switch_detection()
+{
+	uint8_t reset_curr_state = (RESET_SWITCH_PRESS)? HIGH : LOW ;
+ 1a8:	93 b1       	in	r25, 0x03	; 3
+ 1aa:	81 e0       	ldi	r24, 0x01	; 1
+ 1ac:	89 27       	eor	r24, r25
+ 1ae:	81 70       	andi	r24, 0x01	; 1
+	
+	if(reset_prev_state == LOW & reset_curr_state == HIGH)
+ 1b0:	91 e0       	ldi	r25, 0x01	; 1
+ 1b2:	20 91 0b 01 	lds	r18, 0x010B	; 0x80010b <reset_prev_state>
+ 1b6:	21 11       	cpse	r18, r1
+ 1b8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ba:	98 23       	and	r25, r24
+ 1bc:	31 f0       	breq	.+12     	; 0x1ca <reset_switch_detection+0x22>
+	{
+		count = 0;
+ 1be:	10 92 11 01 	sts	0x0111, r1	; 0x800111 <count+0x1>
+ 1c2:	10 92 10 01 	sts	0x0110, r1	; 0x800110 <count>
+		enable_flag = LOW;
+ 1c6:	10 92 0f 01 	sts	0x010F, r1	; 0x80010f <enable_flag>
+	}
+	reset_prev_state = reset_curr_state;		//updating the previous state with current state
+ 1ca:	80 93 0b 01 	sts	0x010B, r24	; 0x80010b <reset_prev_state>
+	
+}
+ 1ce:	08 95       	ret
+
+000001d0 <buzzer_check>:
+	 }
+}
+/*buzzer control*/
+void buzzer_check()
+{
+	if(buzzer_timer > 0)
+ 1d0:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <buzzer_timer>
+ 1d4:	90 91 13 01 	lds	r25, 0x0113	; 0x800113 <buzzer_timer+0x1>
+ 1d8:	a0 91 14 01 	lds	r26, 0x0114	; 0x800114 <buzzer_timer+0x2>
+ 1dc:	b0 91 15 01 	lds	r27, 0x0115	; 0x800115 <buzzer_timer+0x3>
+ 1e0:	89 2b       	or	r24, r25
+ 1e2:	8a 2b       	or	r24, r26
+ 1e4:	8b 2b       	or	r24, r27
+ 1e6:	b9 f0       	breq	.+46     	; 0x216 <buzzer_check+0x46>
+	{
+		BUZZER_ON;
+ 1e8:	85 b1       	in	r24, 0x05	; 5
+ 1ea:	80 64       	ori	r24, 0x40	; 64
+ 1ec:	85 b9       	out	0x05, r24	; 5
+		buzzer_timer--;
+ 1ee:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <buzzer_timer>
+ 1f2:	90 91 13 01 	lds	r25, 0x0113	; 0x800113 <buzzer_timer+0x1>
+ 1f6:	a0 91 14 01 	lds	r26, 0x0114	; 0x800114 <buzzer_timer+0x2>
+ 1fa:	b0 91 15 01 	lds	r27, 0x0115	; 0x800115 <buzzer_timer+0x3>
+ 1fe:	01 97       	sbiw	r24, 0x01	; 1
+ 200:	a1 09       	sbc	r26, r1
+ 202:	b1 09       	sbc	r27, r1
+ 204:	80 93 12 01 	sts	0x0112, r24	; 0x800112 <buzzer_timer>
+ 208:	90 93 13 01 	sts	0x0113, r25	; 0x800113 <buzzer_timer+0x1>
+ 20c:	a0 93 14 01 	sts	0x0114, r26	; 0x800114 <buzzer_timer+0x2>
+ 210:	b0 93 15 01 	sts	0x0115, r27	; 0x800115 <buzzer_timer+0x3>
+ 214:	08 95       	ret
+	}
+	else
+	{
+		BUZZER_OFF;
+ 216:	85 b1       	in	r24, 0x05	; 5
+ 218:	8f 7b       	andi	r24, 0xBF	; 191
+ 21a:	85 b9       	out	0x05, r24	; 5
+ 21c:	08 95       	ret
+
+0000021e <display_digit>:
+	}
+}
+/*function to display the count on the SSD display*/
+void display_digit(uint16_t count)
+{
+ 21e:	cf 93       	push	r28
+ 220:	df 93       	push	r29
+ 222:	00 d0       	rcall	.+0      	; 0x224 <display_digit+0x6>
+ 224:	00 d0       	rcall	.+0      	; 0x226 <display_digit+0x8>
+ 226:	cd b7       	in	r28, 0x3d	; 61
+ 228:	de b7       	in	r29, 0x3e	; 62
+ 22a:	ac 01       	movw	r20, r24
+	/*Common Cathode SSD*/
+	
+	uint8_t digit_buffer[4];	//to store the digits separately for SSD's
+	
+	/*taking single digit from count and storing in digit buffer for each SSD's to display*/
+	digit_buffer[0] = (count % 10);				//ones
+ 22c:	9c 01       	movw	r18, r24
+ 22e:	ad ec       	ldi	r26, 0xCD	; 205
+ 230:	bc ec       	ldi	r27, 0xCC	; 204
+ 232:	0e 94 04 02 	call	0x408	; 0x408 <__umulhisi3>
+ 236:	96 95       	lsr	r25
+ 238:	87 95       	ror	r24
+ 23a:	96 95       	lsr	r25
+ 23c:	87 95       	ror	r24
+ 23e:	96 95       	lsr	r25
+ 240:	87 95       	ror	r24
+ 242:	9c 01       	movw	r18, r24
+ 244:	22 0f       	add	r18, r18
+ 246:	33 1f       	adc	r19, r19
+ 248:	88 0f       	add	r24, r24
+ 24a:	99 1f       	adc	r25, r25
+ 24c:	88 0f       	add	r24, r24
+ 24e:	99 1f       	adc	r25, r25
+ 250:	88 0f       	add	r24, r24
+ 252:	99 1f       	adc	r25, r25
+ 254:	82 0f       	add	r24, r18
+ 256:	93 1f       	adc	r25, r19
+ 258:	9a 01       	movw	r18, r20
+ 25a:	28 1b       	sub	r18, r24
+ 25c:	39 0b       	sbc	r19, r25
+ 25e:	29 83       	std	Y+1, r18	; 0x01
+	digit_buffer[1] = ((count / 10) % 10);		//tens
+ 260:	9a 01       	movw	r18, r20
+ 262:	0e 94 04 02 	call	0x408	; 0x408 <__umulhisi3>
+ 266:	fc 01       	movw	r30, r24
+ 268:	f6 95       	lsr	r31
+ 26a:	e7 95       	ror	r30
+ 26c:	f6 95       	lsr	r31
+ 26e:	e7 95       	ror	r30
+ 270:	f6 95       	lsr	r31
+ 272:	e7 95       	ror	r30
+ 274:	9f 01       	movw	r18, r30
+ 276:	0e 94 04 02 	call	0x408	; 0x408 <__umulhisi3>
+ 27a:	96 95       	lsr	r25
+ 27c:	87 95       	ror	r24
+ 27e:	96 95       	lsr	r25
+ 280:	87 95       	ror	r24
+ 282:	96 95       	lsr	r25
+ 284:	87 95       	ror	r24
+ 286:	9c 01       	movw	r18, r24
+ 288:	22 0f       	add	r18, r18
+ 28a:	33 1f       	adc	r19, r19
+ 28c:	88 0f       	add	r24, r24
+ 28e:	99 1f       	adc	r25, r25
+ 290:	88 0f       	add	r24, r24
+ 292:	99 1f       	adc	r25, r25
+ 294:	88 0f       	add	r24, r24
+ 296:	99 1f       	adc	r25, r25
+ 298:	82 0f       	add	r24, r18
+ 29a:	93 1f       	adc	r25, r19
+ 29c:	9f 01       	movw	r18, r30
+ 29e:	28 1b       	sub	r18, r24
+ 2a0:	39 0b       	sbc	r19, r25
+ 2a2:	2a 83       	std	Y+2, r18	; 0x02
+	digit_buffer[2] = ((count / 100) % 10);		//hundredths
+ 2a4:	9a 01       	movw	r18, r20
+ 2a6:	36 95       	lsr	r19
+ 2a8:	27 95       	ror	r18
+ 2aa:	36 95       	lsr	r19
+ 2ac:	27 95       	ror	r18
+ 2ae:	ab e7       	ldi	r26, 0x7B	; 123
+ 2b0:	b4 e1       	ldi	r27, 0x14	; 20
+ 2b2:	0e 94 04 02 	call	0x408	; 0x408 <__umulhisi3>
+ 2b6:	fc 01       	movw	r30, r24
+ 2b8:	f6 95       	lsr	r31
+ 2ba:	e7 95       	ror	r30
+ 2bc:	9f 01       	movw	r18, r30
+ 2be:	ad ec       	ldi	r26, 0xCD	; 205
+ 2c0:	bc ec       	ldi	r27, 0xCC	; 204
+ 2c2:	0e 94 04 02 	call	0x408	; 0x408 <__umulhisi3>
+ 2c6:	96 95       	lsr	r25
+ 2c8:	87 95       	ror	r24
+ 2ca:	96 95       	lsr	r25
+ 2cc:	87 95       	ror	r24
+ 2ce:	96 95       	lsr	r25
+ 2d0:	87 95       	ror	r24
+ 2d2:	9c 01       	movw	r18, r24
+ 2d4:	22 0f       	add	r18, r18
+ 2d6:	33 1f       	adc	r19, r19
+ 2d8:	88 0f       	add	r24, r24
+ 2da:	99 1f       	adc	r25, r25
+ 2dc:	88 0f       	add	r24, r24
+ 2de:	99 1f       	adc	r25, r25
+ 2e0:	88 0f       	add	r24, r24
+ 2e2:	99 1f       	adc	r25, r25
+ 2e4:	82 0f       	add	r24, r18
+ 2e6:	93 1f       	adc	r25, r19
+ 2e8:	9f 01       	movw	r18, r30
+ 2ea:	28 1b       	sub	r18, r24
+ 2ec:	39 0b       	sbc	r19, r25
+ 2ee:	2b 83       	std	Y+3, r18	; 0x03
+	digit_buffer[3] = ((count / 1000) % 10);	//thousandths
+ 2f0:	9a 01       	movw	r18, r20
+ 2f2:	36 95       	lsr	r19
+ 2f4:	27 95       	ror	r18
+ 2f6:	36 95       	lsr	r19
+ 2f8:	27 95       	ror	r18
+ 2fa:	36 95       	lsr	r19
+ 2fc:	27 95       	ror	r18
+ 2fe:	a5 ec       	ldi	r26, 0xC5	; 197
+ 300:	b0 e2       	ldi	r27, 0x20	; 32
+ 302:	0e 94 04 02 	call	0x408	; 0x408 <__umulhisi3>
+ 306:	ac 01       	movw	r20, r24
+ 308:	52 95       	swap	r21
+ 30a:	42 95       	swap	r20
+ 30c:	4f 70       	andi	r20, 0x0F	; 15
+ 30e:	45 27       	eor	r20, r21
+ 310:	5f 70       	andi	r21, 0x0F	; 15
+ 312:	45 27       	eor	r20, r21
+ 314:	9a 01       	movw	r18, r20
+ 316:	ad ec       	ldi	r26, 0xCD	; 205
+ 318:	bc ec       	ldi	r27, 0xCC	; 204
+ 31a:	0e 94 04 02 	call	0x408	; 0x408 <__umulhisi3>
+ 31e:	96 95       	lsr	r25
+ 320:	87 95       	ror	r24
+ 322:	96 95       	lsr	r25
+ 324:	87 95       	ror	r24
+ 326:	96 95       	lsr	r25
+ 328:	87 95       	ror	r24
+ 32a:	9c 01       	movw	r18, r24
+ 32c:	22 0f       	add	r18, r18
+ 32e:	33 1f       	adc	r19, r19
+ 330:	88 0f       	add	r24, r24
+ 332:	99 1f       	adc	r25, r25
+ 334:	88 0f       	add	r24, r24
+ 336:	99 1f       	adc	r25, r25
+ 338:	88 0f       	add	r24, r24
+ 33a:	99 1f       	adc	r25, r25
+ 33c:	82 0f       	add	r24, r18
+ 33e:	93 1f       	adc	r25, r19
+ 340:	9a 01       	movw	r18, r20
+ 342:	28 1b       	sub	r18, r24
+ 344:	39 0b       	sbc	r19, r25
+ 346:	2c 83       	std	Y+4, r18	; 0x04
+	
+	static uint8_t curr_pos = 0;
+
+	PORTC |= 0x0F;								// 0x0F - 0000 1111 for Enabling the SSD Enable Pins					 
+ 348:	88 b1       	in	r24, 0x08	; 8
+ 34a:	8f 60       	ori	r24, 0x0F	; 15
+ 34c:	88 b9       	out	0x08, r24	; 8
+	PORTD = digits[digit_buffer[curr_pos]];		//loading digit to PORTD 
+ 34e:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <__data_end>
+ 352:	e1 e0       	ldi	r30, 0x01	; 1
+ 354:	f0 e0       	ldi	r31, 0x00	; 0
+ 356:	ec 0f       	add	r30, r28
+ 358:	fd 1f       	adc	r31, r29
+ 35a:	e8 0f       	add	r30, r24
+ 35c:	f1 1d       	adc	r31, r1
+ 35e:	e0 81       	ld	r30, Z
+ 360:	f0 e0       	ldi	r31, 0x00	; 0
+ 362:	e0 50       	subi	r30, 0x00	; 0
+ 364:	ff 4f       	sbci	r31, 0xFF	; 255
+ 366:	80 81       	ld	r24, Z
+ 368:	8b b9       	out	0x0b, r24	; 11
+	PORTC &= ~(1 << curr_pos);					//Enabling the corresponding SSD
+ 36a:	28 b1       	in	r18, 0x08	; 8
+ 36c:	81 e0       	ldi	r24, 0x01	; 1
+ 36e:	90 e0       	ldi	r25, 0x00	; 0
+ 370:	00 90 0a 01 	lds	r0, 0x010A	; 0x80010a <__data_end>
+ 374:	02 c0       	rjmp	.+4      	; 0x37a <display_digit+0x15c>
+ 376:	88 0f       	add	r24, r24
+ 378:	99 1f       	adc	r25, r25
+ 37a:	0a 94       	dec	r0
+ 37c:	e2 f7       	brpl	.-8      	; 0x376 <display_digit+0x158>
+ 37e:	80 95       	com	r24
+ 380:	82 23       	and	r24, r18
+ 382:	88 b9       	out	0x08, r24	; 8
+
+	curr_pos = (curr_pos + 1) % 4;		//to keep the range of curr_pos between 1 - 3.
+ 384:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <__data_end>
+ 388:	90 e0       	ldi	r25, 0x00	; 0
+ 38a:	01 96       	adiw	r24, 0x01	; 1
+ 38c:	83 70       	andi	r24, 0x03	; 3
+ 38e:	90 78       	andi	r25, 0x80	; 128
+ 390:	99 23       	and	r25, r25
+ 392:	24 f4       	brge	.+8      	; 0x39c <display_digit+0x17e>
+ 394:	01 97       	sbiw	r24, 0x01	; 1
+ 396:	8c 6f       	ori	r24, 0xFC	; 252
+ 398:	9f 6f       	ori	r25, 0xFF	; 255
+ 39a:	01 96       	adiw	r24, 0x01	; 1
+ 39c:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <__data_end>
+}
+ 3a0:	0f 90       	pop	r0
+ 3a2:	0f 90       	pop	r0
+ 3a4:	0f 90       	pop	r0
+ 3a6:	0f 90       	pop	r0
+ 3a8:	df 91       	pop	r29
+ 3aa:	cf 91       	pop	r28
+ 3ac:	08 95       	ret
+
+000003ae <enable_state>:
+/*Working state indication*/
+void enable_state()
+{
+	 PORTC |= (1 << GREEN_LED);		//TURN ON GREEN LED
+ 3ae:	88 b1       	in	r24, 0x08	; 8
+ 3b0:	80 62       	ori	r24, 0x20	; 32
+ 3b2:	88 b9       	out	0x08, r24	; 8
+	 PORTC &= ~(1 << RED_LED);		//TURN OFF RED LED
+ 3b4:	88 b1       	in	r24, 0x08	; 8
+ 3b6:	8f 7e       	andi	r24, 0xEF	; 239
+ 3b8:	88 b9       	out	0x08, r24	; 8
+ 3ba:	08 95       	ret
+
+000003bc <pause_state>:
+}
+/*Pause state indication */
+void pause_state()
+{
+	PORTC &= ~(1 << GREEN_LED);		//TURN FF GREEN LED
+ 3bc:	88 b1       	in	r24, 0x08	; 8
+ 3be:	8f 7d       	andi	r24, 0xDF	; 223
+ 3c0:	88 b9       	out	0x08, r24	; 8
+	PORTC |= (1 << RED_LED);		//TURN ON RED LED
+ 3c2:	88 b1       	in	r24, 0x08	; 8
+ 3c4:	80 61       	ori	r24, 0x10	; 16
+ 3c6:	88 b9       	out	0x08, r24	; 8
+ 3c8:	08 95       	ret
+
+000003ca <state_check>:
+}
+
+void state_check()
+{
+	 /*current state indication (Pause/Working)*/
+	 if(enable_flag)
+ 3ca:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <enable_flag>
+ 3ce:	88 23       	and	r24, r24
+ 3d0:	19 f0       	breq	.+6      	; 0x3d8 <state_check+0xe>
+	 {
+		 enable_state();
+ 3d2:	0e 94 d7 01 	call	0x3ae	; 0x3ae <enable_state>
+ 3d6:	08 95       	ret
+	 }
+	 else
+	 {
+		 pause_state();
+ 3d8:	0e 94 de 01 	call	0x3bc	; 0x3bc <pause_state>
+ 3dc:	08 95       	ret
+
+000003de <main>:
+	PORTC |= (1 << RED_LED);		//TURN ON RED LED
+}
+
+int main(void)
+{
+	gpio_init();
+ 3de:	0e 94 53 00 	call	0xa6	; 0xa6 <gpio_init>
+
+	while(1)
+	{
+		up_switch_detection();
+ 3e2:	0e 94 66 00 	call	0xcc	; 0xcc <up_switch_detection>
+		down_switch_detection();
+ 3e6:	0e 94 93 00 	call	0x126	; 0x126 <down_switch_detection>
+		pause_switch_detection();
+ 3ea:	0e 94 bf 00 	call	0x17e	; 0x17e <pause_switch_detection>
+		reset_switch_detection();
+ 3ee:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <reset_switch_detection>
+		buzzer_check();
+ 3f2:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <buzzer_check>
+		state_check();
+ 3f6:	0e 94 e5 01 	call	0x3ca	; 0x3ca <state_check>
+		/*function to display count on 7 Segment display*/
+		display_digit(count); 
+ 3fa:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <count>
+ 3fe:	90 91 11 01 	lds	r25, 0x0111	; 0x800111 <count+0x1>
+ 402:	0e 94 0f 01 	call	0x21e	; 0x21e <display_digit>
+ 406:	ed cf       	rjmp	.-38     	; 0x3e2 <main+0x4>
+
+00000408 <__umulhisi3>:
+ 408:	a2 9f       	mul	r26, r18
+ 40a:	b0 01       	movw	r22, r0
+ 40c:	b3 9f       	mul	r27, r19
+ 40e:	c0 01       	movw	r24, r0
+ 410:	a3 9f       	mul	r26, r19
+ 412:	70 0d       	add	r23, r0
+ 414:	81 1d       	adc	r24, r1
+ 416:	11 24       	eor	r1, r1
+ 418:	91 1d       	adc	r25, r1
+ 41a:	b2 9f       	mul	r27, r18
+ 41c:	70 0d       	add	r23, r0
+ 41e:	81 1d       	adc	r24, r1
+ 420:	11 24       	eor	r1, r1
+ 422:	91 1d       	adc	r25, r1
+ 424:	08 95       	ret
+
+00000426 <_exit>:
+ 426:	f8 94       	cli
+
+00000428 <__stop_program>:
+ 428:	ff cf       	rjmp	.-2      	; 0x428 <__stop_program>

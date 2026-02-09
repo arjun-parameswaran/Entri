@@ -1,0 +1,193 @@
+
+led_brightness_control_using_potentiometer.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000154  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000100  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000154  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000184  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000038  00000000  00000000  000001c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000710  00000000  00000000  000001fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000066a  00000000  00000000  0000090c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000271  00000000  00000000  00000f76  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000054  00000000  00000000  000011e8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000003bc  00000000  00000000  0000123c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000039  00000000  00000000  000015f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000028  00000000  00000000  00001631  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   8:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  10:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  14:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  18:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  1c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  20:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  28:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  30:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  34:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  38:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  3c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  40:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  44:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  48:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  4c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  50:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  54:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  58:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  5c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  60:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  64:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	0e 94 71 00 	call	0xe2	; 0xe2 <main>
+  78:	0c 94 7e 00 	jmp	0xfc	; 0xfc <_exit>
+
+0000007c <__bad_interrupt>:
+  7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000080 <fast_pwm_config>:
+#include <avr/io.h>
+
+void fast_pwm_config()
+{
+	/*configuring port for output*/
+	DDRD |= (1 << DDD6);
+  80:	8a b1       	in	r24, 0x0a	; 10
+  82:	80 64       	ori	r24, 0x40	; 64
+  84:	8a b9       	out	0x0a, r24	; 10
+	/*configuring in fast pwm mode*/
+	TCCR0A |= ((1 << WGM01) | (1 << WGM00));
+  86:	84 b5       	in	r24, 0x24	; 36
+  88:	83 60       	ori	r24, 0x03	; 3
+  8a:	84 bd       	out	0x24, r24	; 36
+	/*setting prescaler value to 8 (for getting 7khz freq for the smooth operation of the motor)*/
+	TCCR0B |= (1 << CS01);
+  8c:	85 b5       	in	r24, 0x25	; 37
+  8e:	82 60       	ori	r24, 0x02	; 2
+  90:	85 bd       	out	0x25, r24	; 37
+	/*configuring in non - inverting mode*/
+	TCCR0A |= (1 << COM0A1);
+  92:	84 b5       	in	r24, 0x24	; 36
+  94:	80 68       	ori	r24, 0x80	; 128
+  96:	84 bd       	out	0x24, r24	; 36
+	/*making the value/speed 0 at the time of starting*/
+	OCR0A = 0;
+  98:	17 bc       	out	0x27, r1	; 39
+  9a:	08 95       	ret
+
+0000009c <adc_config>:
+	
+}
+void adc_config()
+{
+	/*configuring the reference voltage*/
+	ADMUX |= (1 << REFS0);
+  9c:	ec e7       	ldi	r30, 0x7C	; 124
+  9e:	f0 e0       	ldi	r31, 0x00	; 0
+  a0:	80 81       	ld	r24, Z
+  a2:	80 64       	ori	r24, 0x40	; 64
+  a4:	80 83       	st	Z, r24
+
+	/*turning ON the ADC*/
+	ADCSRA |= (1 << ADEN);
+  a6:	ea e7       	ldi	r30, 0x7A	; 122
+  a8:	f0 e0       	ldi	r31, 0x00	; 0
+  aa:	80 81       	ld	r24, Z
+  ac:	80 68       	ori	r24, 0x80	; 128
+  ae:	80 83       	st	Z, r24
+	/* Configure Prescaler to 128 */
+	ADCSRA |= (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
+  b0:	80 81       	ld	r24, Z
+  b2:	87 60       	ori	r24, 0x07	; 7
+  b4:	80 83       	st	Z, r24
+  b6:	08 95       	ret
+
+000000b8 <read_adc>:
+}
+
+uint16_t read_adc(uint8_t channel)
+{
+	/*retaining the first 4 bits and making the channel stay between 0 - 7*/
+	ADMUX = (ADMUX & 0xF0) | (channel & 0x07);
+  b8:	ec e7       	ldi	r30, 0x7C	; 124
+  ba:	f0 e0       	ldi	r31, 0x00	; 0
+  bc:	90 81       	ld	r25, Z
+  be:	90 7f       	andi	r25, 0xF0	; 240
+  c0:	87 70       	andi	r24, 0x07	; 7
+  c2:	89 2b       	or	r24, r25
+  c4:	80 83       	st	Z, r24
+	/*start conversion*/
+	ADCSRA |= (1 << ADSC);
+  c6:	ea e7       	ldi	r30, 0x7A	; 122
+  c8:	f0 e0       	ldi	r31, 0x00	; 0
+  ca:	80 81       	ld	r24, Z
+  cc:	80 64       	ori	r24, 0x40	; 64
+  ce:	80 83       	st	Z, r24
+
+	/*waiting for conversion to finish (bit changes to 0*/
+	while (ADCSRA & (1 << ADSC));
+  d0:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+  d4:	86 fd       	sbrc	r24, 6
+  d6:	fc cf       	rjmp	.-8      	; 0xd0 <read_adc+0x18>
+
+	/*Return the ADC value 10-bit result (0 to 1023)*/
+	return ADC;
+  d8:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7f8078>
+  dc:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
+	
+}
+  e0:	08 95       	ret
+
+000000e2 <main>:
+
+int main(void)
+{
+	fast_pwm_config();
+  e2:	0e 94 40 00 	call	0x80	; 0x80 <fast_pwm_config>
+	adc_config();
+  e6:	0e 94 4e 00 	call	0x9c	; 0x9c <adc_config>
+	uint16_t adc_value;
+	while (1)
+	{
+		adc_value = read_adc(0);
+  ea:	80 e0       	ldi	r24, 0x00	; 0
+  ec:	0e 94 5c 00 	call	0xb8	; 0xb8 <read_adc>
+		OCR0A = (adc_value >> 2); //dividing by 4 for mapping.
+  f0:	96 95       	lsr	r25
+  f2:	87 95       	ror	r24
+  f4:	96 95       	lsr	r25
+  f6:	87 95       	ror	r24
+  f8:	87 bd       	out	0x27, r24	; 39
+  fa:	f7 cf       	rjmp	.-18     	; 0xea <main+0x8>
+
+000000fc <_exit>:
+  fc:	f8 94       	cli
+
+000000fe <__stop_program>:
+  fe:	ff cf       	rjmp	.-2      	; 0xfe <__stop_program>

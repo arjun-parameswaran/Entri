@@ -1,0 +1,23 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="DcMotor" CircId="DcMotor-1" mainComp="false" Show_id="true" Show_Val="false" Pos="108,-340" rotation="90" hflip="1" vflip="1" label="DcMotor-1" idLabPos="-22,-48" labelrot="0" valLabPos="-14,36" valLabRot="0" RPM_Nominal="180 _RPM" Volt_Nominal="5 V" Resistance="100 Ω" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="372,-416" rotation="0" hflip="1" vflip="1" label="mega328-2" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="../../../Entri/AVR_Programming/coursework/dc_motor_speed_control__pwm_30pct_speed/dc_motor_speed_control__pwm_30pct_speed/Debug/dc_motor_speed_control__pwm_30pct_speed.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Subcircuit" CircId="L293-3" mainComp="false" Show_id="true" Show_Val="false" Pos="244,-400" rotation="0" hflip="-1" vflip="1" label="L293-3" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Input_High_V="2.5 V" Input_Low_V="2.5 V" Input_Imped="1e+09 Ω" Out_High_V="5 V" Out_Low_V="0 V" Out_Imped="40 Ω" Tpd_ps="10 ns" Tr_ps="3 ns" Tf_ps="4 ns" Logic_Symbol="true" />
+
+<item itemtype="Ground" CircId="Ground-4" mainComp="false" Show_id="false" Show_Val="false" Pos="348,-368" rotation="0" hflip="1" vflip="1" label="Ground-4" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Voltage Source" CircId="Voltage Source-7" mainComp="false" ShowProp="MaxValue" Show_id="false" Show_Val="true" Pos="248,-256" rotation="0" hflip="1" vflip="1" label="Voltage Source-7" idLabPos="-32,-48" labelrot="0" valLabPos="-8,30" valLabRot="0" Running="true" Value_Volt="2.855 V" MaxValue="5 V" MinValue="0 V" />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="L293-3-1Y" endpinid="DcMotor-1-lPin" pointList="204,-392,108,-392,108,-380" />
+
+<item itemtype="Connector" uid="Connector-2" startpinid="DcMotor-1-rPin" endpinid="L293-3-2Y" pointList="108,-300,108,-268,180,-268,180,-384,204,-384" />
+
+<item itemtype="Connector" uid="Connector-12" startpinid="Voltage Source-7-outPin" endpinid="L293-3-12EN" pointList="276,-240,276,-376,252,-376" />
+
+<item itemtype="Connector" uid="Connector-15" startpinid="L293-3-2A" endpinid="mega328-2-PORTD6" pointList="252,-384,336,-384,336,-320,364,-320" />
+
+<item itemtype="Connector" uid="Connector-16" startpinid="L293-3-1A" endpinid="Ground-4-Gnd" pointList="252,-392,348,-392,348,-384" />
+
+</circuit>

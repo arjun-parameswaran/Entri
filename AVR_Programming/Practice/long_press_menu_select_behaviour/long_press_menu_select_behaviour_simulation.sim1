@@ -1,0 +1,17 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Led" CircId="Led-1" mainComp="false" Show_id="false" Show_Val="false" Pos="-428,24" rotation="0" hflip="1" vflip="1" label="Led-1" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Red" Grounded="true" Threshold="1.8 V" MaxCurrent="30 mA" Resistance="0.6 Ω" />
+
+<item itemtype="Ground" CircId="Ground-2" mainComp="false" Show_id="false" Show_Val="false" Pos="-712,124" rotation="0" hflip="1" vflip="1" label="Ground-2" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Push" CircId="Push-3" mainComp="false" Show_id="false" Show_Val="false" Pos="-652,64" rotation="0" hflip="1" vflip="1" label="Push-3" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="MCU" CircId="mega328-5" mainComp="false" Show_id="true" Show_Val="false" Pos="-580,16" rotation="0" hflip="1" vflip="1" label="mega328-5" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="D:/Entri/AVR Programming/Practise/long_press_menu_select_behaviour/long_press_menu_select_behaviour/Debug/long_press_menu_select_behaviour.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="mega328-5-PORTC5" endpinid="Led-1-lPin" pointList="-540,24,-444,24" />
+
+<item itemtype="Connector" uid="Connector-2" startpinid="mega328-5-PORTB7" endpinid="Push-3-switch0pinN" pointList="-588,96,-604,96,-604,64,-636,64" />
+
+<item itemtype="Connector" uid="Connector-3" startpinid="Push-3-pinP0" endpinid="Ground-2-Gnd" pointList="-668,64,-712,64,-712,108" />
+
+</circuit>

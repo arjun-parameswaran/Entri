@@ -1,0 +1,208 @@
+
+two_functions_using_double_switch.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000156  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000102  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000156  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000188  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000020  00000000  00000000  000001c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000766  00000000  00000000  000001e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000068d  00000000  00000000  0000094e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000002cb  00000000  00000000  00000fdb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000024  00000000  00000000  000012a8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000003cc  00000000  00000000  000012cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000000cc  00000000  00000000  00001698  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000010  00000000  00000000  00001764  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   8:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  10:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  14:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  18:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  1c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  20:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  28:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  30:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  34:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  38:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  3c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  40:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  44:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  48:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  4c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  50:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  54:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  58:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  5c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  60:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  64:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	0e 94 40 00 	call	0x80	; 0x80 <main>
+  78:	0c 94 7f 00 	jmp	0xfe	; 0xfe <_exit>
+
+0000007c <__bad_interrupt>:
+  7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000080 <main>:
+#define IS_SWITCH_PRESSED (!(PINB & (1 << SWITCH)))
+
+int main(void)
+{
+	/*configuring ports and pins*/
+	DDRB &= ~(1 << DDB7);   //Input configuration
+  80:	84 b1       	in	r24, 0x04	; 4
+  82:	8f 77       	andi	r24, 0x7F	; 127
+  84:	84 b9       	out	0x04, r24	; 4
+	PORTB |= (1 << SWITCH); //setting as high for pull up
+  86:	85 b1       	in	r24, 0x05	; 5
+  88:	80 68       	ori	r24, 0x80	; 128
+  8a:	85 b9       	out	0x05, r24	; 5
+	DDRB |= (1 << DDB5);    //output
+  8c:	84 b1       	in	r24, 0x04	; 4
+  8e:	80 62       	ori	r24, 0x20	; 32
+  90:	84 b9       	out	0x04, r24	; 4
+	PORTB &= ~(1 << LED1);  //low at starting
+  92:	85 b1       	in	r24, 0x05	; 5
+  94:	8f 7d       	andi	r24, 0xDF	; 223
+  96:	85 b9       	out	0x05, r24	; 5
+	DDRC |= (1 << DDC1);	//
+  98:	87 b1       	in	r24, 0x07	; 7
+  9a:	82 60       	ori	r24, 0x02	; 2
+  9c:	87 b9       	out	0x07, r24	; 7
+	PORTC &= ~(1 << LED2); 
+  9e:	88 b1       	in	r24, 0x08	; 8
+  a0:	8d 7f       	andi	r24, 0xFD	; 253
+  a2:	88 b9       	out	0x08, r24	; 8
+
+	while (1)
+	{
+		if(IS_SWITCH_PRESSED)
+  a4:	1f 99       	sbic	0x03, 7	; 3
+  a6:	fe cf       	rjmp	.-4      	; 0xa4 <main+0x24>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  a8:	2f ef       	ldi	r18, 0xFF	; 255
+  aa:	89 ef       	ldi	r24, 0xF9	; 249
+  ac:	90 e0       	ldi	r25, 0x00	; 0
+  ae:	21 50       	subi	r18, 0x01	; 1
+  b0:	80 40       	sbci	r24, 0x00	; 0
+  b2:	90 40       	sbci	r25, 0x00	; 0
+  b4:	e1 f7       	brne	.-8      	; 0xae <main+0x2e>
+  b6:	00 c0       	rjmp	.+0      	; 0xb8 <main+0x38>
+  b8:	00 00       	nop
+		{
+			_delay_ms(20);
+			if(IS_SWITCH_PRESSED) //checking for first press
+  ba:	1f 99       	sbic	0x03, 7	; 3
+  bc:	f3 cf       	rjmp	.-26     	; 0xa4 <main+0x24>
+			{
+				while(IS_SWITCH_PRESSED);
+  be:	1f 9b       	sbis	0x03, 7	; 3
+  c0:	fe cf       	rjmp	.-4      	; 0xbe <main+0x3e>
+  c2:	80 e0       	ldi	r24, 0x00	; 0
+  c4:	0d c0       	rjmp	.+26     	; 0xe0 <main+0x60>
+  c6:	ef e3       	ldi	r30, 0x3F	; 63
+  c8:	fc e9       	ldi	r31, 0x9C	; 156
+  ca:	31 97       	sbiw	r30, 0x01	; 1
+  cc:	f1 f7       	brne	.-4      	; 0xca <main+0x4a>
+  ce:	00 c0       	rjmp	.+0      	; 0xd0 <main+0x50>
+  d0:	00 00       	nop
+				uint8_t double_press_detected = 0;
+				
+				for(uint8_t i = 0; i < 40; i++)
+				{
+					_delay_ms(10);
+					if(IS_SWITCH_PRESSED)
+  d2:	1f 99       	sbic	0x03, 7	; 3
+  d4:	04 c0       	rjmp	.+8      	; 0xde <main+0x5e>
+					{
+						double_press_detected = 1;
+						while(IS_SWITCH_PRESSED);
+  d6:	1f 9b       	sbis	0x03, 7	; 3
+  d8:	fe cf       	rjmp	.-4      	; 0xd6 <main+0x56>
+				for(uint8_t i = 0; i < 40; i++)
+				{
+					_delay_ms(10);
+					if(IS_SWITCH_PRESSED)
+					{
+						double_press_detected = 1;
+  da:	81 e0       	ldi	r24, 0x01	; 1
+  dc:	04 c0       	rjmp	.+8      	; 0xe6 <main+0x66>
+			if(IS_SWITCH_PRESSED) //checking for first press
+			{
+				while(IS_SWITCH_PRESSED);
+				uint8_t double_press_detected = 0;
+				
+				for(uint8_t i = 0; i < 40; i++)
+  de:	8f 5f       	subi	r24, 0xFF	; 255
+  e0:	88 32       	cpi	r24, 0x28	; 40
+  e2:	88 f3       	brcs	.-30     	; 0xc6 <main+0x46>
+		{
+			_delay_ms(20);
+			if(IS_SWITCH_PRESSED) //checking for first press
+			{
+				while(IS_SWITCH_PRESSED);
+				uint8_t double_press_detected = 0;
+  e4:	80 e0       	ldi	r24, 0x00	; 0
+						while(IS_SWITCH_PRESSED);
+						break;
+					}
+				}
+				/*checking if switch is pressed*/
+				if(double_press_detected)
+  e6:	88 23       	and	r24, r24
+  e8:	29 f0       	breq	.+10     	; 0xf4 <main+0x74>
+				{
+					PORTB ^= (1 << LED1); //toggle the LED
+  ea:	95 b1       	in	r25, 0x05	; 5
+  ec:	80 e2       	ldi	r24, 0x20	; 32
+  ee:	89 27       	eor	r24, r25
+  f0:	85 b9       	out	0x05, r24	; 5
+  f2:	d8 cf       	rjmp	.-80     	; 0xa4 <main+0x24>
+				}
+				else
+				{
+					PORTC ^= (1 << LED2); //turn LED on single press
+  f4:	98 b1       	in	r25, 0x08	; 8
+  f6:	82 e0       	ldi	r24, 0x02	; 2
+  f8:	89 27       	eor	r24, r25
+  fa:	88 b9       	out	0x08, r24	; 8
+  fc:	d3 cf       	rjmp	.-90     	; 0xa4 <main+0x24>
+
+000000fe <_exit>:
+  fe:	f8 94       	cli
+
+00000100 <__stop_program>:
+ 100:	ff cf       	rjmp	.-2      	; 0x100 <__stop_program>

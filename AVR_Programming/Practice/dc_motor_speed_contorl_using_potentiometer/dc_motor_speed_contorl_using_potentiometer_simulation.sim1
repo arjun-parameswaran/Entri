@@ -1,0 +1,53 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Led" CircId="Led-1" mainComp="false" Show_id="false" Show_Val="false" Pos="-148,72" rotation="90" hflip="1" vflip="1" label="Led-1" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Green" Grounded="true" Threshold="3.5 V" MaxCurrent="30 mA" Resistance="0.6 Ω" />
+
+<item itemtype="Led" CircId="Led-2" mainComp="false" Show_id="false" Show_Val="false" Pos="-116,72" rotation="90" hflip="1" vflip="1" label="Led-2" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Red" Grounded="true" Threshold="1.8 V" MaxCurrent="30 mA" Resistance="0.6 Ω" />
+
+<item itemtype="MCU" CircId="mega328-5" mainComp="false" Show_id="false" Show_Val="false" Pos="-292,-32" rotation="0" hflip="1" vflip="1" label="mega328-5" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="dc_motor_speed_contorl_using_potentiometer/Debug/dc_motor_speed_contorl_using_potentiometer.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Potentiometer" CircId="Potentiometer-8" mainComp="false" Show_id="false" Show_Val="false" Pos="-56,-32" rotation="0" hflip="1" vflip="1" label="Potentiometer-8" idLabPos="-16,-40" labelrot="0" valLabPos="15,-20" valLabRot="0" Resistance="10 kΩ" Value_Ohm="10000 Ω" Slider="true" Scale="10" />
+
+<item itemtype="Push" CircId="Push-9" mainComp="false" Show_id="false" Show_Val="false" Pos="-412,8" rotation="0" hflip="1" vflip="1" label="Push-9" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Ground" CircId="Ground-13" mainComp="false" Show_id="false" Show_Val="false" Pos="-492,104" rotation="0" hflip="1" vflip="1" label="Ground-13" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-18" mainComp="false" Show_id="false" Show_Val="false" Pos="-8,32" rotation="0" hflip="1" vflip="1" label="Ground-18" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Subcircuit" CircId="L293-20" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,-120" rotation="0" hflip="-1" vflip="1" label="L293-20" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Input_High_V="2.5 V" Input_Low_V="2.5 V" Input_Imped="1e+09 Ω" Out_High_V="5 V" Out_Low_V="0 V" Out_Imped="40 Ω" Tpd_ps="10 ns" Tr_ps="3 ns" Tf_ps="4 ns" Logic_Symbol="true" />
+
+<item itemtype="Voltage Source" CircId="Voltage Source-22" mainComp="false" ShowProp="MaxValue" Show_id="false" Show_Val="true" Pos="-268,136" rotation="0" hflip="1" vflip="1" label="Voltage Source-22" idLabPos="-32,-48" labelrot="0" valLabPos="-8,30" valLabRot="0" Running="true" Value_Volt="5 V" MaxValue="5 V" MinValue="0 V" />
+
+<item itemtype="DcMotor" CircId="DcMotor-23" mainComp="false" Show_id="true" Show_Val="false" Pos="-612,-88" rotation="90" hflip="1" vflip="1" label="DcMotor-23" idLabPos="-22,-48" labelrot="0" valLabPos="-14,36" valLabRot="0" RPM_Nominal="150 _RPM" Volt_Nominal="5 V" Resistance="100 Ω" />
+
+<item itemtype="Csource" CircId="Csource-33" mainComp="false" Show_id="false" Show_Val="false" Pos="-1032,-44" rotation="0" hflip="1" vflip="1" label="Csource-33" idLabPos="4,-28" labelrot="0" valLabPos="4,18" valLabRot="0" Control_Pins="true" CurrSource="true" CurrControl="false" Gain="1" Voltage="5 V" Current="1 A" />
+
+<item itemtype="Node" CircId="Node-25" mainComp="false" Pos="-8,0" />
+
+<item itemtype="Connector" uid="Connector-2" startpinid="mega328-5-PORTC0" endpinid="Potentiometer-8-PinM" pointList="-252,16,-56,16,-56,-16" />
+
+<item itemtype="Connector" uid="Connector-3" startpinid="Led-1-lPin" endpinid="mega328-5-PORTB4" pointList="-148,56,-252,56" />
+
+<item itemtype="Connector" uid="Connector-4" startpinid="Led-2-lPin" endpinid="mega328-5-PORTB5" pointList="-116,56,-116,48,-252,48" />
+
+<item itemtype="Connector" uid="Connector-5" startpinid="Push-9-switch0pinN" endpinid="mega328-5-PORTD2" pointList="-396,8,-300,8,-300,0" />
+
+<item itemtype="Connector" uid="Connector-6" startpinid="Push-9-pinP0" endpinid="Ground-13-Gnd" pointList="-428,8,-492,8,-492,88" />
+
+<item itemtype="Connector" uid="Connector-13" startpinid="Voltage Source-22-outPin" endpinid="L293-20-12EN" pointList="-240,152,-240,-96,-252,-96" />
+
+<item itemtype="Connector" uid="Connector-15" startpinid="DcMotor-23-lPin" endpinid="L293-20-1Y" pointList="-612,-128,-612,-156,-352,-156,-352,-112,-300,-112" />
+
+<item itemtype="Connector" uid="Connector-16" startpinid="L293-20-2Y" endpinid="DcMotor-23-rPin" pointList="-300,-104,-536,-104,-536,-28,-612,-28,-612,-48" />
+
+<item itemtype="Connector" uid="Connector-24" startpinid="L293-20-1A" endpinid="Node-25-1" pointList="-252,-112,-108,-112,-108,0,-8,0" />
+
+<item itemtype="Connector" uid="Connector-25" startpinid="Potentiometer-8-PinB" endpinid="Node-25-0" pointList="-40,-32,-8,-32,-8,0" />
+
+<item itemtype="Connector" uid="Connector-26" startpinid="Node-25-2" endpinid="Ground-18-Gnd" pointList="-8,0,-8,16" />
+
+<item itemtype="Connector" uid="Connector-37" startpinid="mega328-5-PORTV1" endpinid="Potentiometer-8-PinA" pointList="-252,32,-140,32,-140,-32,-72,-32" />
+
+<item itemtype="Connector" uid="Connector-38" startpinid="mega328-5-PORTB1" endpinid="L293-20-2A" pointList="-252,80,-208,80,-208,-104,-252,-104" />
+
+</circuit>
